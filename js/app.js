@@ -18,7 +18,11 @@ Enemy.prototype.update = function(dt) {
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    ctx.drawImage(Resources.get(this.sprite), this.x * 110, this.y * 65);
+    this.x = x;
+    this.y = y;
+    //help with random numbers Javascript & JQuery by Jon Duckett
+    this.speed = Math.floor((Math.random()*10) +1);
 };
 
 // Now write your own player class
@@ -31,13 +35,22 @@ var Player = function() {
     // Assign player's starting location
     this.x = 5;
     this.y = 2;
+
+    Player.prototype.update = function() {};
+    Player.prototype.render = function() {
+        ctx.drawImage(Resources.get(this.sprite), this.x * 110, this.y * 65);
+    };
+    Player.prototype.handleInput = function() {};
 }
 
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
+var allEnemies = [];
 // Place the player object in a variable called player
+var player = {
 
+}
 
 
 // This listens for key presses and sends the keys to your
