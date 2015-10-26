@@ -2,7 +2,9 @@
 var Enemy = function() {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
-
+    this.x = Math.floor((Math.random()*3) +1);
+    this.y = Math.floor((Math.random()*1) +1);
+    this.speed = Math.floor((Math.random()*3) +1);
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
@@ -14,15 +16,13 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    this.x = this.x + (this.speed * dt);
+
 };
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x * 110, this.y * 65);
-    this.x = x;
-    this.y = y;
-    //help with random numbers Javascript & JQuery by Jon Duckett
-    this.speed = Math.floor((Math.random()*10) +1);
 };
 
 // Now write your own player class
@@ -30,28 +30,67 @@ Enemy.prototype.render = function() {
 // a handleInput() method.
 var Player = function() {
     //Choose character to start
-    this.sprite = ['images/char-pink-girl.png'];
-
+    this.sprite = 'images/char-pink-girl.png';
     // Assign player's starting location
-    this.x = 5;
-    this.y = 2;
+    this.x = 2;
+    this.y = 5;
+};
 
-    Player.prototype.update = function() {};
-    Player.prototype.render = function() {
-        ctx.drawImage(Resources.get(this.sprite), this.x * 110, this.y * 65);
+    Player.prototype.update = function() {
     };
-    Player.prototype.handleInput = function() {};
-}
+
+    Player.prototype.render = function() {
+        ctx.drawImage(Resources.get(this.sprite),this.x * 100,this.y * 80);
+    };
+    Player.prototype.handleInput = function(arrowKey) {
+        switch (arrowKey) {
+        
+        //Player arrow left
+        case 'left':
+         if (this.x > 0) {
+            this.x--;
+         }
+         break;
+        //Player arrow up
+        case 'up':
+         if (this.y > 0) {
+            this.y--;
+         }
+         break;
+        //Player arrow right
+        case 'right':
+         if (this.x < 4) {
+            this.x++;
+         }
+         break;
+        //Player arrow down
+        case 'down':
+         if (this.y < 5) {
+            this.y++;
+         }
+         break;
+
+        case 'win':
+         if (this.y === 0){
+          alert("You Win!");
+          player = new Player(2,5);
+        }
+        break;
+        
+    }
+    };
 
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-var allEnemies = [];
+var allEnemies = new Array();
+for (var i = 0; i < 100; i++) {
+    allEnemies[i] = new Enemy();
+};
+
+
 // Place the player object in a variable called player
-var player = {
-
-}
-
+var player = new Player();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
