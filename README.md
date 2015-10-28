@@ -11,8 +11,13 @@ The player can move left, right, up and down. The enemies move in varying speeds
 
 Resources used to create the game: 
 
-Udacity courses: Object-Oriented Javascript HTML5 Canvas 
-CodeCademy: JavaScript
-Eloquent JavaScript 2nd Edition: eloquenjavascript.net
-JavaScript & JQuery - John Duckett
+Website: Udacity courses: Object-Oriented Javascript HTML5 Canvas 
+Website: CodeCademy: JavaScript
+Website: MDN - Introduction to Object-Oriented JavaScript 
+	(https://developer.mozilla.org/en-US/docs/Web/JavaScript/Introduction_to_Object-Oriented_JavaScript)
+Website: MSDN: Using HTML5 canvas and JavaScript to detect collisions between vehicles in a game (https://msdn.microsoft.com/en-us/library/gg589497(v=vs.85).aspx)
+Website:  
 
+
+Book: Eloquent JavaScript 2nd Edition: eloquenjavascript.net
+Book: JavaScript & JQuery - John Duckett
