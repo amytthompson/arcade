@@ -1,10 +1,13 @@
 // Enemies our player must avoid
 var Enemy = function() {
+    //defines enemy
     this.sprite = 'images/enemy-bug.png';
-    
-    this.x = Math.floor((Math.random()*3) +1);
-    this.y = Math.floor((Math.random()*2) +1);
-    this.speed = Math.floor((Math.random()*3) +1);
+    //set bugs off the map
+    this.x = Math.floor((Math.random() * 100) - 10);
+    //set bugs to rows 1, 2, or 3
+    this.y = Math.floor((Math.random()*3)+1);
+    //set speed between 2 and 3
+    this.speed = Math.floor((Math.random() * 3) * 2);
 
 };
 
@@ -79,13 +82,8 @@ Player.prototype.handleInput = function(arrowKey) {
      }
      break;
 
-    //case 'win':
-     //if (this.y === 0){
-      //alert("You Win!");
-      //player = new Player(2,5);
-    //}
-    //break;
-  
+    default:
+        console.log("Use arrow keys to move around the board");    
 }
 };
 
