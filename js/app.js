@@ -2,35 +2,22 @@
 var Enemy = function() {
     //defines enemy
     this.sprite = 'images/enemy-bug.png';
-    //set bugs off the map
-    this.x = Math.floor((Math.random() * 100) - 10);
+    //set 500 bugs off the map
+    this.x = Math.floor((Math.random()*500) - 10);
     //set bugs to rows 1, 2, or 3
     this.y = Math.floor((Math.random()*3)+1);
     //set speed between 2 and 3
-    this.speed = Math.floor((Math.random() * 3) * 2);
+    this.speed = Math.floor((Math.random()*3)*2);
+    this.width = 50;
+    this.height = 50;
 
 };
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
-    this.x = this.x += (this.speed * dt);
-    }
-//Enemy.prototype.update = function(reset) {
-  //this.x = -200;
-//};
-  //if (this.x > 505) {
-  //this.reset();   
-
-//};
-//Enemy.prototype.update = function(checkCollisions) { 
-    //if(Enemy.x === Player.x && Enemy.y === Player.y) {
-    //return "Game Over";
-    //}
-//};
+    this.x = this.x + this.speed * dt;
+    };
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
@@ -46,6 +33,8 @@ var Player = function() {
     // Assign player's starting location
     this.x = 2;
     this.y = 5;
+    this.width = 10;
+    this.height = 10;
 };
 
 Player.prototype.update = function() {
@@ -81,6 +70,11 @@ Player.prototype.handleInput = function(arrowKey) {
         this.y++;
      }
      break;
+     case 'win':
+     if (this.y = 5) {
+        console.log("You Win!")
+     }
+     break;
 
     default:
         console.log("Use arrow keys to move around the board");    
@@ -91,8 +85,9 @@ Player.prototype.handleInput = function(arrowKey) {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 var allEnemies = [];
-for (var i = 0; i < 100; i++) {
-    allEnemies.push(new Enemy());
+for (var i = 0; i < 500; i++) {
+    var enemy = new Enemy();
+    allEnemies.push(enemy);
 };
 
 
