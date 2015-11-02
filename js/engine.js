@@ -83,23 +83,6 @@ var Engine = (function(global) {
         checkCollisions();
     }
 
-    function checkCollisions() {
-
-        function collision(enemy,player) {
-        return enemy.x < player.x + player.width &&
-             enemy.x + enemy.width > player.x &&
-             enemy.y < player.y + player.height &&
-             enemy.y + enemy.height > player.y;
-        }
-
-        allEnemies.forEach(function(enemy) {
-            if (collision(enemy,player)) {
-                //if collision, reset player
-            }
-        });
-
-    };
-
     /* This is called by the update function  and loops through all of the
      * objects within your allEnemies array as defined in app.js and calls
      * their update() methods. It will then call the update function for your
@@ -177,7 +160,10 @@ var Engine = (function(global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
-        //game over
+        //checkCollisions() {
+        //this.x = 2;
+        //this.y = 5;
+    //};
     }
 
     /* Go ahead and load all of the images we know we're going to need to

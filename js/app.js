@@ -5,11 +5,9 @@ var Enemy = function() {
     //set 500 bugs off the map
     this.x = Math.floor((Math.random()*500) - 10);
     //set bugs to rows 1, 2, or 3
-    this.y = Math.floor((Math.random()*3)+1);
+    this.y = Math.floor((Math.random()*3)+2);
     //set speed between 2 and 3
     this.speed = Math.floor((Math.random()*3)*2);
-    this.width = 50;
-    this.height = 50;
 
 };
 
@@ -17,7 +15,18 @@ var Enemy = function() {
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
     this.x = this.x + this.speed * dt;
+
+    function checkCollisions() {
+    for(var i = 0; i < allEnemies.length; i++){ 
+    if (allEnemies[i].x <= player.x + 80 &&
+        allEnemies[i].x + 80 >= player.x &&
+        allEnemies[i].y <= player.y + 80 &&
+        allEnemies[i].y + 80 >= player.y) {
+        console.log('Game Over');
+        } 
+    }
     };
+};
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
@@ -33,12 +42,11 @@ var Player = function() {
     // Assign player's starting location
     this.x = 2;
     this.y = 5;
-    this.width = 10;
-    this.height = 10;
 };
 
 Player.prototype.update = function() {
-};
+
+}
 
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite),this.x * 100,this.y * 80);
@@ -71,7 +79,7 @@ Player.prototype.handleInput = function(arrowKey) {
      }
      break;
      case 'win':
-     if (this.y = 5) {
+     if (this.y === 5) {
         console.log("You Win!")
      }
      break;
@@ -86,8 +94,8 @@ Player.prototype.handleInput = function(arrowKey) {
 // Place all enemy objects in an array called allEnemies
 var allEnemies = [];
 for (var i = 0; i < 500; i++) {
-    var enemy = new Enemy();
-    allEnemies.push(enemy);
+    //var enemy = new Enemy();
+    allEnemies.push(new Enemy());
 };
 
 
