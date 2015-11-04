@@ -3,7 +3,7 @@ var Enemy = function() {
     //defines enemy image
     this.sprite = 'images/enemy-bug.png';
     //set 500 bugs off the map by 10 spaces
-    this.x = Math.floor((Math.random()*500) - 10);
+    this.x = Math.floor((Math.random()*500) -10);
     //set bugs to rows 1, 2, or 3
     this.y = Math.floor((Math.random()*3)+2);
     //set speed between 2 and 3
@@ -31,7 +31,7 @@ Enemy.prototype.update = function(dt) {
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x * 100, this.y * 55);
+    ctx.drawImage(Resources.get(this.sprite), this.x * 110, this.y * 50);
 };
 
 // Now write your own player class
