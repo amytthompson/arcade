@@ -1,36 +1,37 @@
 // Enemies our player must avoid
 var Enemy = function() {
-    //defines enemy
+    //defines enemy image
     this.sprite = 'images/enemy-bug.png';
-    //set 500 bugs off the map
+    //set 500 bugs off the map by 10 spaces
     this.x = Math.floor((Math.random()*500) - 10);
     //set bugs to rows 1, 2, or 3
     this.y = Math.floor((Math.random()*3)+2);
     //set speed between 2 and 3
     this.speed = Math.floor((Math.random()*3)*2);
-
 };
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
     this.x = this.x + this.speed * dt;
+}
 
-    function checkCollisions() {
-    for(var i = 0; i < allEnemies.length; i++){ 
-    if (allEnemies[i].x <= player.x + 80 &&
-        allEnemies[i].x + 80 >= player.x &&
-        allEnemies[i].y <= player.y + 80 &&
-        allEnemies[i].y + 80 >= player.y) {
-        console.log('Game Over');
-        } 
-    }
-    };
-};
+    //checkCollisions = function() {
+    //for(var i = 0; i < allEnemies.length; i++) { 
+    //if 
+
+        //(allEnemies[i].x < player.x + 75 &&
+        //allEnemies[i].x + 65 > player.x &&
+        //allEnemies[i].y < player.y + 50 &&
+        //allEnemies[i].y + 70 > player.y) {
+        //console.log('Game Over');
+        //} 
+    //}
+    //};    
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x * 110, this.y * 65);
+    ctx.drawImage(Resources.get(this.sprite), this.x * 100, this.y * 55);
 };
 
 // Now write your own player class
@@ -45,14 +46,13 @@ var Player = function() {
 };
 
 Player.prototype.update = function() {
-
 }
 
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite),this.x * 100,this.y * 80);
 };
-Player.prototype.handleInput = function(arrowKey) {
-    switch (arrowKey) {
+Player.prototype.handleInput = function(allowedKeys) {
+    switch (allowedKeys) {
     
     //Player arrow left
     case 'left':
@@ -78,11 +78,6 @@ Player.prototype.handleInput = function(arrowKey) {
         this.y++;
      }
      break;
-     case 'win':
-     if (this.y === 5) {
-        console.log("You Win!")
-     }
-     break;
 
     default:
         console.log("Use arrow keys to move around the board");    
@@ -94,7 +89,6 @@ Player.prototype.handleInput = function(arrowKey) {
 // Place all enemy objects in an array called allEnemies
 var allEnemies = [];
 for (var i = 0; i < 500; i++) {
-    //var enemy = new Enemy();
     allEnemies.push(new Enemy());
 };
 
