@@ -80,8 +80,20 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        //checkCollisions();
+        checkCollisions();
     }
+        //collision detection
+    function checkCollisions() {
+        for(i = 0; i < allEnemies.length; i++) {
+
+        if (enemy.x < player.x + 40 &&
+           enemy.x + 40 > player.x &&
+           enemy.y < player.y + 60 &&
+           60 + enemy.y > player.y) {
+            // collision detected!
+        }
+    }
+    };
 
     /* This is called by the update function  and loops through all of the
      * objects within your allEnemies array as defined in app.js and calls
