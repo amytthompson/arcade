@@ -2,7 +2,7 @@
 var Enemy = function() {
     //defines enemy image
     this.sprite = 'images/enemy-bug.png';
-    //set 500 bugs off the map by 10 spaces
+    //set 500 bugs off the grid by 10 spaces
     this.x = Math.floor((Math.random()*500) -10);
     //set bugs to rows 1, 2, or 3
     this.y = Math.floor((Math.random()*3)+2);
@@ -13,21 +13,8 @@ var Enemy = function() {
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-    this.x = this.x + this.speed * dt;
-}
-
-    //checkCollisions = function() {
-    //for(var i = 0; i < allEnemies.length; i++) { 
-    //if 
-
-        //(allEnemies[i].x < player.x + 75 &&
-        //allEnemies[i].x + 65 > player.x &&
-        //allEnemies[i].y < player.y + 50 &&
-        //allEnemies[i].y + 70 > player.y) {
-        //console.log('Game Over');
-        //} 
-    //}
-    //};    
+    this.x = this.x + this.speed * dt;    
+};
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
@@ -46,7 +33,8 @@ var Player = function() {
 };
 
 Player.prototype.update = function() {
-}
+
+};
 
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite),this.x * 100,this.y * 80);
@@ -58,6 +46,7 @@ Player.prototype.handleInput = function(allowedKeys) {
     case 'left':
      if (this.x > 0) {
         this.x--;
+        console.log(this.x)
      }
      break;
     //Player arrow up
@@ -80,7 +69,7 @@ Player.prototype.handleInput = function(allowedKeys) {
      break;
 
     default:
-        console.log("Use arrow keys to move around the board");    
+        alert("Use arrow keys to move around the board");    
 }
 };
 
@@ -89,7 +78,8 @@ Player.prototype.handleInput = function(allowedKeys) {
 // Place all enemy objects in an array called allEnemies
 var allEnemies = [];
 for (var i = 0; i < 500; i++) {
-    allEnemies.push(new Enemy());
+    var enemy = new Enemy();
+    allEnemies.push(enemy);
 };
 
 
