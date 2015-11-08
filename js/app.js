@@ -1,20 +1,38 @@
 // Enemies our player must avoid
-var Enemy = function() {
+var Enemy = function(x,y) {
     //defines enemy image
     this.sprite = 'images/enemy-bug.png';
     //set 500 bugs off the grid by 10 spaces
-    this.x = Math.floor((Math.random()*500) -10);
+    this.x = Math.floor((Math.random()*500) -5);
     //set bugs to rows 1, 2, or 3
     this.y = Math.floor((Math.random()*3)+2);
     //set speed between 2 and 3
-    this.speed = Math.floor((Math.random()*3)*2);
+    this.speed = Math.floor((Math.random()*3));
 };
+
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-    this.x = this.x + this.speed * dt;    
-};
+    this.x += this.speed * dt; 
+
+    if (this.x > 505) {
+        this.x = -1;
+       }
+
+}
+    var checkCollisions = function() {
+            for(i = 0; i < allEnemies.length; i++){
+
+            if (this.x < player.x + 51 &&
+               this.x + 51 > player.x &&
+               this.y < player.y + 51 &&
+               51 + this.y > player.y) {
+                // check collisions
+                console.log('Game Over');
+            }
+        }
+};  
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
@@ -33,7 +51,6 @@ var Player = function() {
 };
 
 Player.prototype.update = function() {
-
 };
 
 Player.prototype.render = function() {
@@ -46,7 +63,6 @@ Player.prototype.handleInput = function(allowedKeys) {
     case 'left':
      if (this.x > 0) {
         this.x--;
-        console.log(this.x)
      }
      break;
     //Player arrow up
@@ -76,11 +92,15 @@ Player.prototype.handleInput = function(allowedKeys) {
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
+//Udacity - Scopes and Closures
 var allEnemies = [];
-for (var i = 0; i < 500; i++) {
-    var enemy = new Enemy();
+var enemy = function () {
+    for (var i = 0; i < 500; i++) {
+    enemy = new Enemy();
     allEnemies.push(enemy);
+}
 };
+enemy();
 
 
 // Place the player object in a variable called player
