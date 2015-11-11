@@ -39,6 +39,8 @@ Enemy.prototype.checkCollisions = function() {
 };  
 
 
+
+
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     
@@ -99,6 +101,7 @@ Player.prototype.handleInput = function(allowedKeys) {
 };
 
 Player.prototype.reset = function() {
+    enemy.checkCollisions();
 
     if (enemy.checkCollisions() === true) {
         this.x = 2;
