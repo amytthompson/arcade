@@ -25,20 +25,18 @@ Enemy.prototype.update = function(dt) {
 
 Enemy.prototype.checkCollisions = function() {
 
-        for (var i = 0; i < allEnemies.length; i++) {
-            if (player.x < this.x + 50 &&
-               player.x + 50 > this.x &&
-               player.y < this.y + 50 &&
-               50 + player.y > this.y) {
-            // check collisions
-                return true;
-            } else {
-                return false;
-            }
+    for (var i = 0; i < allEnemies.length; i++) {
+        if (player.x < this.x + 50 &&
+           player.x + 50 > this.x &&
+           player.y < this.y + 90 &&
+           90 + player.y > this.y) {
+        // check collisions
+            return true;
+        } else {
+            return false;
         }
+    }
 };  
-
-
 
 
 // Draw the enemy on the screen, required method for game
@@ -57,12 +55,19 @@ var Player = function() {
 };
 
 Player.prototype.update = function() {
+
+    enemy.checkCollisions();
+
+    if (enemy.checkCollisions() === true) {
+        console.log('Splat!');
+        //player.reset();
+    } 
 };
 
 // Draw the player on the screen, required method for game
 Player.prototype.render = function() {
     
-    ctx.drawImage(Resources.get(this.sprite),this.x * 101,this.y * 80);
+    ctx.drawImage(Resources.get(this.sprite),this.x * 101,this.y * 83);
 };
 
 //defines how player moves around the grid
@@ -97,17 +102,13 @@ Player.prototype.handleInput = function(allowedKeys) {
 
     default:
         alert("Use arrow keys to move around the board");    
-}
-};
-
-Player.prototype.reset = function() {
-    enemy.checkCollisions();
-
-    if (enemy.checkCollisions() === true) {
-        this.x = 2;
-        this.y = 5;
     }
 };
+
+/*Player.prototype.reset = function() {
+    this.x = 2;
+    this.y = 5;
+}; */
 
 
 
@@ -119,7 +120,7 @@ var enemy = function () {
     for (var i = 0; i < 3; i++) {
     enemy = new Enemy();
     allEnemies.push(enemy);
-}
+    }
 };
 enemy();
 
