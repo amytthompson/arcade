@@ -16,8 +16,8 @@ var Enemy = function() {
 Enemy.prototype.update = function(dt) {
     
     this.x += this.speed * dt; 
-
-    if (this.x > 5)  {
+    
+    if (this.x > 5) {
     //if enemy moves off canvas, resets to start 
         this.x = -1;
     }
@@ -26,15 +26,14 @@ Enemy.prototype.update = function(dt) {
 Enemy.prototype.checkCollisions = function() {
 
     for (var i = 0; i < allEnemies.length; i++) {
-        if (player.x < this.x + 50 &&
-           player.x + 50 > this.x &&
-           player.y < this.y + 90 &&
-           90 + player.y > this.y) {
-        // check collisions
-            return true;
-        } else {
-            return false;
-        }
+        if (player.x < this.x + 90 &&
+           player.x + 90 > this.x &&
+           player.y < this.y + 80 &&
+           80 + player.y > this.y) {
+        // testing checkCollisions
+            console.log(player.x, player.y);
+            console.log(enemy.x, enemy.y);
+      }
     }
 };  
 
@@ -56,12 +55,11 @@ var Player = function() {
 
 Player.prototype.update = function() {
 
-    enemy.checkCollisions();
+  enemy.checkCollisions();
 
     if (enemy.checkCollisions() === true) {
         console.log('Splat!');
-        //player.reset();
-    } 
+    }
 };
 
 // Draw the player on the screen, required method for game
@@ -99,16 +97,23 @@ Player.prototype.handleInput = function(allowedKeys) {
         this.y++;
      }
      break;
+    //player wins
+    case 'win':
+     if (this.y === 0) {
+        this.reset();
+     }
+     break;
 
     default:
         alert("Use arrow keys to move around the board");    
     }
 };
 
-/*Player.prototype.reset = function() {
-    this.x = 2;
-    this.y = 5;
-}; */
+Player.prototype.reset = function() {
+  console.log('You Win!');
+  this.x = 2;
+  this.y = 5;
+}; 
 
 
 
