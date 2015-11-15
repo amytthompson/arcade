@@ -33,6 +33,8 @@ Enemy.prototype.checkCollisions = function() {
         // testing checkCollisions
             console.log(player.x, player.y);
             console.log(enemy.x, enemy.y);
+      } else {
+        return true;
       }
     }
 };  
