@@ -9,18 +9,21 @@ In this game you have a Player and Enemies (Bugs). The goal of the player is to 
 
 The player can move left, right, up and down using the arrowkeys. The enemies move in varying speeds on the paved block portion of the scene. Once a player collides with an enemy, the game is reset, and the player moves back to start. Player wins by reaching the water without any collisions.
 
-##Resources used to create the game: 
+##Resources reviewed to create the game: 
 
-**Website:** Udacity courses: Object-Oriented Javascript and HTML5 Canvas 
+**Website:** Udacity - Object-Oriented Javascript and HTML5 Canvas 
 
-**Website:** CodeCademy: JavaScript
+**Website:** CodeCademy - JavaScript
 (https://www.codecademy.com/learn/javascript)
 
 **Website:** MDN - Introduction to Object-Oriented JavaScript 
 (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Introduction_to_Object-Oriented_JavaScript)
 
-**Website:** MSDN: Using HTML5 canvas and JavaScript to detect collisions between vehicles in a game 
+**Website:** MSDN - Using HTML5 canvas and JavaScript to detect collisions between vehicles in a game 
 (https://msdn.microsoft.com/en-us/library/gg589497(v=vs.85).aspx)
+
+**Website:** Mary Rose Cook
+("http://maryrosecook.com/blog/post/how-to-do-2d-collision-detection")
 
 **Book:** Eloquent JavaScript 2nd Edition - Marijn Haverbeke
 
