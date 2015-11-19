@@ -4,6 +4,8 @@ var Enemy = function() {
   //defines enemy image
   this.sprite = 'images/enemy-bug.png';
   //assigns enemy start position
+  //this.width = 101;
+  //this.height = 171;
   this.x = -1;
   this.y = 3;
   //defines enemy speed
@@ -26,17 +28,16 @@ Enemy.prototype.update = function(dt) {
 Enemy.prototype.checkCollisions = function() {
 
   for (var i = 0; i < allEnemies.length; i++) {
-      if (player.x < this.x + 50 &&
-         player.x + 50 > this.x &&
-         player.y < this.y + 70 &&
-         70 + player.y > this.y) {
+      if (player.x < this.x + 101 &&
+         player.x + 101 > this.x &&
+         player.y < this.y + 48 &&
+         83 + player.y > this.y) {
         //testing checkCollisions function
         console.log(player.x, player.y);
         console.log(enemy.x, enemy.y);
-    }
+    } 
   }
 };  
-
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
@@ -51,6 +52,8 @@ var Player = function() {
   // assign player starting location
   this.x = 2;
   this.y = 5;
+  //this.width = 101;
+  //this.height = 171;
 };
 
 Player.prototype.update = function() {
@@ -98,7 +101,7 @@ Player.prototype.handleInput = function(allowedKeys) {
   // player wins!
   case 'win':
    if (this.y === 0) {
-      this.reset();
+      player.reset();
    }
    break;
 
@@ -114,12 +117,13 @@ Player.prototype.reset = function() {
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
+
 var allEnemies = [];
 var enemy = function () {   
-    for (var i = 0; i < 3; i++) {
-    enemy = new Enemy();
-    allEnemies.push(enemy);
-    }
+  for (var i = 0; i < 3; i++) {
+  enemy = new Enemy();
+  allEnemies.push(enemy);
+  }
 };
 enemy();
 
