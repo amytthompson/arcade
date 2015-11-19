@@ -25,19 +25,6 @@ Enemy.prototype.update = function(dt) {
   }
 };
 
-Enemy.prototype.checkCollisions = function() {
-
-  for (var i = 0; i < allEnemies.length; i++) {
-      if (player.x < this.x + 101 &&
-         player.x + 101 > this.x &&
-         player.y < this.y + 48 &&
-         83 + player.y > this.y) {
-        //testing checkCollisions function
-        console.log(player.x, player.y);
-        console.log(enemy.x, enemy.y);
-    } 
-  }
-};  
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
@@ -58,7 +45,7 @@ var Player = function() {
 
 Player.prototype.update = function() {
   
-  if (enemy.checkCollisions() === true) {
+  if (this.checkCollisions() === true) {
     console.log('Splat!');
   }
 };
@@ -110,6 +97,19 @@ Player.prototype.handleInput = function(allowedKeys) {
   }
 };
 
+Player.prototype.checkCollisions = function() {
+
+  for (var i = 0; i < allEnemies.length; i++) {
+      if (this.x < enemy.x + 101 &&
+         this.x + 101 > enemy.x &&
+         this.y < enemy.y + 48 &&
+         83 + this.y > enemy.y) {
+        //testing checkCollisions function
+        console.log(player.x, player.y);
+        console.log(enemy.x, enemy.y);
+    } 
+  }
+};  
 Player.prototype.reset = function() {
   console.log('You Win!');
   new Player();
