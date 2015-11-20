@@ -1,11 +1,9 @@
 // Enemies our player must avoid
-var Enemy = function() {
-   
+var Enemy = function() {   
   //defines enemy image
   this.sprite = 'images/enemy-bug.png';
   //assigns enemy start position
-  //this.width = 101;
-  //this.height = 171;
+  //this.loc();
   this.x = -1;
   this.y = 3;
   //defines enemy speed
@@ -16,44 +14,43 @@ var Enemy = function() {
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
+
+  player.checkCollisions();
     
-  this.x += this.speed * dt; 
-  
   if (this.x > 5) {
   // if enemy moves off canvas, resets to start 
+      //this.loc();
       this.x = -1;
+  } else {
+      this.x += this.speed * dt; 
   }
+
 };
 
-
 // Draw the enemy on the screen, required method for game
-Enemy.prototype.render = function() {
-    
+Enemy.prototype.render = function() {   
   ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 48);
 };
 
-var Player = function() {
-    
+/*Enemy.prototype.loc = function() {
+this.x = -1;
+this.y = 3;
+}*/
+
+var Player = function() {   
   // define player image
   this.sprite = 'images/char-pink-girl.png';
   // assign player starting location
   this.x = 2;
-  this.y = 5;
-  //this.width = 101;
-  //this.height = 171;
+  this.y = 0;
 };
 
 Player.prototype.update = function() {
-  
-  if (this.checkCollisions() === true) {
-    console.log('Splat!');
-  }
 };
 
 // Draw the player on the screen, required method for game
-Player.prototype.render = function() {
-    
-  ctx.drawImage(Resources.get(this.sprite),this.x * 101,this.y * 83);
+Player.prototype.render = function() {    
+  ctx.drawImage(Resources.get(this.sprite),this.x * 101, -(this.y * 80) + 400);
 };
 
 // defines how player moves around the grid
@@ -68,7 +65,7 @@ Player.prototype.handleInput = function(allowedKeys) {
    }
    break;
   // player arrow up
-  case 'up':
+  case 'down':
    if (this.y > 0) {
       this.y--;
    }
@@ -80,15 +77,16 @@ Player.prototype.handleInput = function(allowedKeys) {
    }
    break;
   // player arrow down
-  case 'down':
+  case 'up':
    if (this.y < 5) {
       this.y++;
    }
    break;
-  // player wins!
   case 'win':
-   if (this.y === 0) {
-      player.reset();
+  //player wins!
+  if (this.y >= 5) {
+    console.log('win');
+    this.reset();
    }
    break;
 
@@ -100,19 +98,21 @@ Player.prototype.handleInput = function(allowedKeys) {
 Player.prototype.checkCollisions = function() {
 
   for (var i = 0; i < allEnemies.length; i++) {
-      if (this.x < enemy.x + 101 &&
-         this.x + 101 > enemy.x &&
-         this.y < enemy.y + 48 &&
-         83 + this.y > enemy.y) {
-        //testing checkCollisions function
-        console.log(player.x, player.y);
-        console.log(enemy.x, enemy.y);
+    if (this.x < enemy.x + 50 &&
+        this.x + 50 > enemy.x &&
+        this.y < enemy.y + 50 &&
+        this.y + 50 > enemy.y) {
+
+        console.log('checkCollisions');
+        this.reset();
     } 
   }
 };  
+
 Player.prototype.reset = function() {
-  console.log('You Win!');
-  new Player();
+    console.log('player reset function');
+      this.x = 2;
+      this.y = 0;
 }; 
 
 // Now instantiate your objects.
@@ -126,7 +126,6 @@ var enemy = function () {
   }
 };
 enemy();
-
 
 // Place the player object in a variable called player
 var player = new Player();
