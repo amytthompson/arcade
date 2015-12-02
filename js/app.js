@@ -14,33 +14,34 @@ var Enemy = function() {
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
+  //if enemy moves off canvas, enemy resets to start
   if (this.x > 5) {
-  //if enemy moves off canvas, resets to start
       this.x = -1;
   } else {
       this.x += this.speed * dt;
   }
 };
 
-// Draw the enemy on the screen, required method for game
+//Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 48);
 };
 
 var Player = function() {
-  // define player image
+  //define player image
   this.sprite = 'images/char-pink-girl.png';
-  // assign player starting location
+  //assign player starting location
   this.x = 2;
   this.y = 0;
 };
 
 Player.prototype.update = function() {
   //player wins!
+
+  this.checkCollisions();
+
   if (this.y >= 5) {
-    alert('You Win!');
-  } else {
-    this.checkCollisions();
+    console.log('You Win!');
   }
 };
 
@@ -86,13 +87,14 @@ Player.prototype.handleInput = function(allowedKeys) {
 
 Player.prototype.checkCollisions = function() {
   for (var i = 0; i < allEnemies.length; i++) {
-    if (this.x < enemy.x + 50 &&
-        this.x + 50 > enemy.x &&
-        this.y < enemy.y + 50 &&
-        this.y + 50 > enemy.y) {
+    /*add calculation to determine row*/
+    if (this.x > enemy.x + 0 && 
+        this.x < enemy.x + 60 &&
+        this.y > enemy.y + 0 &&
+        this.y < enemy.y + 60) {
         this.reset();
         }
-  }
+    }
 };
 
 Player.prototype.reset = function() {
@@ -101,8 +103,8 @@ Player.prototype.reset = function() {
   this.y = 0;
 };
 
-// Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
+//Instantiate all objects
+//Place all enemy objects in an array called allEnemies
 
 var allEnemies = [];
 var enemy = function () {
