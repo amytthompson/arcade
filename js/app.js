@@ -36,13 +36,8 @@ var Player = function() {
 };
 
 Player.prototype.update = function() {
-  //player wins!
-
+  //collision detection
   this.checkCollisions();
-
-  if (this.y >= 5) {
-    console.log('You Win!');
-  }
 };
 
 // Draw the player on the screen, required method for game
@@ -99,8 +94,12 @@ Player.prototype.checkCollisions = function() {
 
 Player.prototype.reset = function() {
   console.log('player reset function');
-  this.x = 2;
-  this.y = 0;
+
+  if (this.y >= 5) {
+    console.log('You Win!');
+    this.x = 2;
+    this.y = 0;
+  }
 };
 
 //Instantiate all objects
