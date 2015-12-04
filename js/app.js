@@ -38,6 +38,12 @@ var Player = function() {
 Player.prototype.update = function() {
   //collision detection
   this.checkCollisions();
+
+  //or player wins!
+  if (this.y >= 5) {
+    console.log('You Win!');
+    this.reset();
+  }
 };
 
 // Draw the player on the screen, required method for game
@@ -83,23 +89,20 @@ Player.prototype.handleInput = function(allowedKeys) {
 Player.prototype.checkCollisions = function() {
   for (var i = 0; i < allEnemies.length; i++) {
     /*add calculation to determine row*/
-    if (this.x > enemy.x + 0 && 
-        this.x < enemy.x + 60 &&
-        this.y > enemy.y + 0 &&
-        this.y < enemy.y + 60) {
-        this.reset();
+    if (this.x >= enemy.x + 0 && 
+        this.x < enemy.x + 44 &&
+        this.y >= enemy.y + 0 &&
+        this.y < enemy.y + 44) {
+          console.log('Splat!');
+          
         }
     }
 };
 
 Player.prototype.reset = function() {
   console.log('player reset function');
-
-  if (this.y >= 5) {
-    console.log('You Win!');
     this.x = 2;
     this.y = 0;
-  }
 };
 
 //Instantiate all objects
